@@ -6,6 +6,9 @@ import React, { forwardRef, useContext, useImperativeHandle, useRef } from 'reac
 import { AppTopbarRef } from '../types/types';
 import { LayoutContext } from './context/layoutcontext';
 import { Menu } from 'primereact/menu';
+import api from '../lib/api';
+import { useRouter } from 'next/navigation';
+
 
 const AppTopbar = forwardRef<AppTopbarRef>((props, ref) => {
     const { layoutConfig, layoutState, onMenuToggle, showProfileSidebar } = useContext(LayoutContext);
@@ -13,17 +16,35 @@ const AppTopbar = forwardRef<AppTopbarRef>((props, ref) => {
     const topbarmenuRef = useRef(null);
     const topbarmenubuttonRef = useRef(null);
 
+    const router = useRouter();
+
+    //Função de logout para limpar os cookies e tokens
+    const handelLogout = async () => {
+        try {
+            //logout para limpar cookies antigos
+            await api.post('/auth/logout', {}, {
+            withCredentials: true // Importante para envio de cookies
+            });
+            router.push('/login');  
+
+        }catch (err) {
+            console.error('Logout error:', err);
+        }
+
+    }
+
     const items = [
         {
             label: 'Options',
             items: [
                 {
-                    label: 'Refresh',
+                    label: 'Editar',
                     icon: 'pi pi-refresh'
                 },
                 {
-                    label: 'Export',
-                    icon: 'pi pi-upload'
+                    label: 'Sair',
+                    icon: 'pi pi-upload',
+                    command: () => { handelLogout(); } // Execute a função de logout
                 }
             ]
         }
@@ -63,7 +84,7 @@ const AppTopbar = forwardRef<AppTopbarRef>((props, ref) => {
                     <span>Profile</span>
                 </button>
                 
-                <Link href="/configuracao">
+                <Link href="/adjustment">
                     <button type="button" className="p-link layout-topbar-button">
                         <i className="pi pi-cog"></i>
                         <span>Settings</span>

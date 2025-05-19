@@ -15,7 +15,7 @@ import { LayoutContext } from "./context/layoutcontext";
 import { PrimeReactContext } from "primereact/api";
 import { ChildContainerProps, LayoutState, AppTopbarRef } from "../types/types";
 import { usePathname, useSearchParams } from "next/navigation";
-import ConfigLayout from "../app/(main)/configuracao/page";
+import ConfigLayout from "../app/(main)/adjustment/page";
 import App from "next/app";
 
 const Layout = ({ children }: ChildContainerProps) => {
