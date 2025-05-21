@@ -38,6 +38,8 @@ const LoginPage = () => {
             console.error('Login error:', err);
         }
 
+        // Melhorar a tratativa de erros
+
     };
     return (
         <div className={containerClassName}>
