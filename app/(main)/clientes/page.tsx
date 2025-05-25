@@ -1,13 +1,17 @@
-import { FilterMatchMode, FilterOperator } from 'primereact/api';
+"use client"; //Para renderizar no lado do cliente Obrigatório ter o "use client"
+
 import { BreadCrumb } from 'primereact/breadcrumb';
 import { Button } from 'primereact/button';
 import { Column } from 'primereact/column';
-import { DataTable, DataTableFilterMeta } from 'primereact/datatable';
+import { DataTable } from 'primereact/datatable';
 import { InputText } from 'primereact/inputtext';
-import React, { useState } from 'react';
+import { useState } from 'react';
+import ModalClientSave from './modalClientSave';
 
 const Client = () => {
 
+
+    const [visibleModalClient, setVisibleModalClient] = useState(false);
 
     // interface RepresentativeOption {
     //     name: string;
@@ -143,7 +147,7 @@ const Client = () => {
 
     //    const header = renderHeader();
 
-    const filterClient = () => {
+    const renderFilter = () => {
         return (
             <div className='w-full md:w-6 pr-2 md:pr-2 mb-2 md:mb-0'>
                 <span className="p-input-icon-left w-full ">
@@ -154,11 +158,11 @@ const Client = () => {
         );
     };
 
-    const buttonClient = () => {
+    const renderButton = () => {
         return (
             <div className='w-full md:w-6 flex flex-column md:flex-row md:justify-content-end gap-2 md:gap-4'>
 
-                <Button label="Novo" icon="pi pi-plus" className="p-button-success" />
+                <Button label="Novo" icon="pi pi-plus" className="p-button-success" onClick={() => setVisibleModalClient(true)} />
 
                 <Button label="Deletar" icon="pi pi-trash" className="p-button-danger" />
                 
@@ -206,15 +210,17 @@ const Client = () => {
             {/* <div className="flex flex-column md:flex-row w-full"> */}
                 <div className="card flex flex-column md:flex-row align-items-center">
                    
-                    {filterClient()}
+                    {renderFilter()}
 
-                    {buttonClient()}
+                    {renderButton()}
 
                 </div>
 
                 {tableClient()}
 
             </div>
+
+            <ModalClientSave visible={visibleModalClient} setVisible={setVisibleModalClient} />
         </div>
     );
 };
