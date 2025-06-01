@@ -1,9 +1,4 @@
 
-// Para os Enums 
-export interface StatusValues {
-    value: string;
-    label: string;
-}
 
 export interface Client {
     id: number;

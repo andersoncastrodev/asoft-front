@@ -5,8 +5,9 @@ import { Dialog } from "primereact/dialog";
 import { Dropdown } from "primereact/dropdown";
 import { InputText } from "primereact/inputtext";
 import { searchEnumStatus } from "../service/cliente-service/cliente-service";
-import { use, useEffect, useState } from "react";
-import { StatusValues } from "../interface/cliente-interface/client-inteface";
+import { useEffect, useState } from "react";
+import { StatusValues } from "../interface/enum-inteface/enum-interface";
+
 
 
 interface ModalClientSaveProps { //Declaração das propriedades da Props

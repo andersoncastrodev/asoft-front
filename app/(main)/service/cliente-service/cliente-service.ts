@@ -1,6 +1,7 @@
 import axios from "axios";
 import api from "../../../../lib/api";
-import { StatusValues } from "../../interface/cliente-interface/client-inteface";
+import { StatusValues } from "../../interface/enum-inteface/enum-interface";
+
 
 
 // Pegar o URL da API geral
