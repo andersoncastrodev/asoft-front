@@ -4,7 +4,7 @@ import { Button } from "primereact/button";
 import { Dialog } from "primereact/dialog";
 import { Dropdown } from "primereact/dropdown";
 import { InputText } from "primereact/inputtext";
-import { searchEnumStatus } from "../service/cliente-service/cliente-service";
+import { searchEnumSex, searchEnumStatus } from "../service/cliente-service/cliente-service";
 import { useEffect, useState } from "react";
 import { StatusValues } from "../interface/enum-inteface/enum-interface";
 
@@ -22,11 +22,19 @@ const ModalClientSave = ({ //Usando os parâmetros passados via Props
 
     const [ status, setStatus ] = useState <StatusValues[]> (); 
     const [ statusSelected, setStatusSelected ] = useState <StatusValues> ();
+
+    const [ sex, setSex ] = useState <StatusValues[]> ();
+    const [ sexSelected, setSexSelected ] = useState <StatusValues> ();
  
     const enumStatus = async() => {
         const enumStatus = await searchEnumStatus();
         setStatus(enumStatus);
         console.log(status);
+    }
+
+    const enumSex = async() => {
+        const enumSex = await searchEnumSex();
+        setSex(enumSex);
     }
 
     const renderFields = () => {
@@ -39,6 +47,15 @@ const ModalClientSave = ({ //Usando os parâmetros passados via Props
                 
                 onChange={(e) => setStatusSelected(e.value)} //setando o status selecionado
                 value={statusSelected} //Exibindo o status selecionado
+                />
+
+
+                <Dropdown  
+                options={sex} //dados do backend
+                placeholder="Genero" 
+                
+                onChange={(e) => setSexSelected(e.value)} //setando o status selecionado
+                value={sexSelected} //Exibindo o status selecionado
                 />
                 
                 <InputText placeholder="Nome" />
@@ -62,6 +79,7 @@ const ModalClientSave = ({ //Usando os parâmetros passados via Props
 
     useEffect(() => {
         enumStatus();
+        enumSex();
     }, []);
 
     //Principal render
