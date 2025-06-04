@@ -7,6 +7,7 @@ import { InputText } from "primereact/inputtext";
 import { searchEnumSex, searchEnumStatus } from "../service/cliente-service/cliente-service";
 import { useEffect, useState } from "react";
 import { StatusValues } from "../interface/enum-inteface/enum-interface";
+import { RadioButton } from "primereact/radiobutton";
 
 
 
@@ -41,6 +42,16 @@ const ModalClientSave = ({ //Usando os parâmetros passados via Props
         return (
             <div className='flex flex-column gap-2'>
 
+
+
+                <InputText placeholder="Nome" />
+
+                <InputText placeholder="Telefone Principal" />
+
+                <InputText placeholder="Telefone Secundario" />
+
+                <InputText placeholder="Email" />
+
                 <Dropdown  
                 options={status} //dados do backend
                 placeholder="Status" 
@@ -57,12 +68,8 @@ const ModalClientSave = ({ //Usando os parâmetros passados via Props
                 onChange={(e) => setSexSelected(e.value)} //setando o status selecionado
                 value={sexSelected} //Exibindo o status selecionado
                 />
-                
-                <InputText placeholder="Nome" />
 
-                <InputText placeholder="Telefone" />
 
-                <InputText placeholder="Email" />
 
             </div>
         );
@@ -86,6 +93,17 @@ const ModalClientSave = ({ //Usando os parâmetros passados via Props
     return (
         <Dialog header="Clientes" visible={visible} onHide={() => {setVisible(false)}} style={{ width: '50vw' }}>
                
+
+                <div className="flex align-items-left">
+                    <RadioButton inputId="ingredient1" name="fisica" value="Fisica" />
+                    <label htmlFor="ingredient1" className="ml-2">Juridica</label>
+                </div>
+
+                <div className="flex align-items-left">
+                    <RadioButton inputId="ingredient1" name="juridica" value="Juridica" />
+                    <label htmlFor="ingredient2" className="ml-2">Fisica</label>
+                </div>
+
                {renderFields()}
 
                {renderButtons()}
