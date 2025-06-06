@@ -2,7 +2,7 @@
 
 import { Button } from "primereact/button";
 import { Dialog } from "primereact/dialog";
-import { Dropdown } from "primereact/dropdown";
+import { Dropdown, DropdownChangeEvent } from "primereact/dropdown";
 import { InputText } from "primereact/inputtext";
 import { searchEnumSex, searchEnumStatus } from "../service/cliente-service/cliente-service";
 import { useEffect, useState } from "react";
@@ -38,10 +38,20 @@ const ModalClientSave = ({ //Usando os parâmetros passados via Props
         setSex(enumSex);
     }
 
+
+    const [selectedPerson, setSelectedPerson] = useState(null);
+    const persons: any[] = [
+        { name: 'Fisica', code: 'FISICA' },
+        { name: 'Juridica', code: 'JURIDICA' }
+    ];
+
     const renderFields = () => {
         return (
             <div className='flex flex-column gap-2'>
 
+                    <Dropdown value={selectedPerson} onChange={(e: DropdownChangeEvent) => setSelectedPerson(e.value)} options={persons} optionLabel="name"
+                        placeholder="Pessoa.."/>
+              
 
 
                 <InputText placeholder="Nome" />
@@ -93,7 +103,7 @@ const ModalClientSave = ({ //Usando os parâmetros passados via Props
     return (
         <Dialog header="Clientes" visible={visible} onHide={() => {setVisible(false)}} style={{ width: '50vw' }}>
                
-
+{/* 
                 <div className="flex align-items-left">
                     <RadioButton inputId="ingredient1" name="fisica" value="Fisica" />
                     <label htmlFor="ingredient1" className="ml-2">Juridica</label>
@@ -102,7 +112,7 @@ const ModalClientSave = ({ //Usando os parâmetros passados via Props
                 <div className="flex align-items-left">
                     <RadioButton inputId="ingredient1" name="juridica" value="Juridica" />
                     <label htmlFor="ingredient2" className="ml-2">Fisica</label>
-                </div>
+                </div> */}
 
                {renderFields()}
 
