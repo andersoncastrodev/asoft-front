@@ -207,7 +207,7 @@ const Client = () => {
 
                 <BreadCrumb home={{ icon: 'pi pi-home', url: '/' }} model={[{ label: 'Clientes' }]} />
 
-            <div className="flex flex-column md:flex-row w-full">
+            {/* <div className="flex flex-column md:flex-row w-full"> */}
                 <div className="card flex flex-column md:flex-row align-items-center">
                    
                     {renderFilter()}
