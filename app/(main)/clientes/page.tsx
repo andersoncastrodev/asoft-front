@@ -147,16 +147,16 @@ const Client = () => {
 
     //    const header = renderHeader();
 
-    const renderFilter = () => {
-        return (
-            <div className='w-full md:w-6 pr-2 md:pr-2 mb-2 md:mb-0'>
-                <span className="p-input-icon-left w-full ">
-                    <i className="pi pi-search" />
-                    <InputText type="text" placeholder='Buscar' className='w-full' />
-                </span>
-            </div>
-        );
-    };
+    // const renderFilter = () => {
+    //     return (
+    //         <div className='w-full md:w-6 pr-2 md:pr-2 mb-2 md:mb-0'>
+    //             <span className="p-input-icon-left w-full ">
+    //                 <i className="pi pi-search" />
+    //                 <InputText type="text" placeholder='Buscar' className='w-full' />
+    //             </span>
+    //         </div>
+    //     );
+    // };
 
     const renderButton = () => {
         return (
