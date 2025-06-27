@@ -4,11 +4,9 @@ import { Button } from "primereact/button";
 import { Dialog } from "primereact/dialog";
 import { Dropdown, DropdownChangeEvent } from "primereact/dropdown";
 import { InputText } from "primereact/inputtext";
-import { searchEnumSex, searchEnumStatus } from "../service/cliente-service/cliente-service";
 import { useEffect, useState } from "react";
 import { StatusValues } from "../interface/enum-inteface/enum-interface";
-import { RadioButton } from "primereact/radiobutton";
-
+import { searchEnumSex, searchEnumStatus } from "../service/cliente-service/cliente-service";
 
 
 interface ModalClientSaveProps { //Declaração das propriedades da Props
@@ -41,53 +39,55 @@ const ModalClientSave = ({ //Usando os parâmetros passados via Props
 
     const [selectedPerson, setSelectedPerson] = useState(null);
     const persons: any[] = [
+        { name: 'Pessoa', code: 'PESSOA' },
         { name: 'Fisica', code: 'FISICA' },
         { name: 'Juridica', code: 'JURIDICA' }
     ];
 
     const renderFields = () => {
         return (
-            <div className='flex flex-column gap-2'>
-
+            <div className='grid flex flex-column gap-2 w-full h-full'>
+                <div className='col-12 md:col-12 sm:col-6 flex flex-row gap-3'>
                     <Dropdown value={selectedPerson} onChange={(e: DropdownChangeEvent) => setSelectedPerson(e.value)} options={persons} optionLabel="name"
-                        placeholder="Pessoa.."/>
-              
-
-
-                <InputText placeholder="Nome" />
-
-                <InputText placeholder="Telefone Principal" />
-
-                <InputText placeholder="Telefone Secundario" />
-
-                <InputText placeholder="Email" />
-
-                <Dropdown  
-                options={status} //dados do backend
-                placeholder="Status" 
+                        placeholder="Pessoa" style={{width: '50%'}} />
+                    <InputText placeholder="Nome" style={{width: '50%'}} />
+                </div>
+                <div className='md:col-12 sm:col-6'>
+                    <InputText placeholder="Telefone Principal" style={{width: '100%'}} />
+                </div>
+                <div className='md:col-12 sm:col-6'>
+                    <InputText placeholder="Telefone Secundario"  style={{width: '100%'}}   />
+                </div>
+                <div className='md:col-12 sm:col-6'>
+                    <InputText placeholder="Email"   style={{width: '100%'}} />
+                </div>
+                <div className='md:col-12 sm:col-6'>
+                    <Dropdown  
+                        options={status}
+                        placeholder="Status" 
+                        onChange={(e) => setStatusSelected(e.value)}
+                        value={statusSelected}
+                        style={{width: '100%'}}
+                        
+                    />
+                </div>
+                <div className='md:col-12 sm:col-6'>
+                    <Dropdown  
+                        options={sex}
+                        placeholder="Genero" 
+                        onChange={(e) => setSexSelected(e.value)}
+                        value={sexSelected}
+                        style={{width: '100%'}}
+                    />
+                </div>
                 
-                onChange={(e) => setStatusSelected(e.value)} //setando o status selecionado
-                value={statusSelected} //Exibindo o status selecionado
-                />
-
-
-                <Dropdown  
-                options={sex} //dados do backend
-                placeholder="Genero" 
-                
-                onChange={(e) => setSexSelected(e.value)} //setando o status selecionado
-                value={sexSelected} //Exibindo o status selecionado
-                />
-
-
-
             </div>
         );
     };
 
     const renderButtons = () => {
         return (
-            <div className='flex flex-row gap-2'>
+            <div className='flex flex-column sm:flex-row sm:justify-content-end mt-4 w-full gap-3'>
                 <Button label="Salvar" icon="pi pi-check" className="p-button-success" />
                 <Button label="Fechar" icon="pi pi-times" className="p-button-danger" onClick={() => {setVisible(false)}} />
             </div>
@@ -101,26 +101,13 @@ const ModalClientSave = ({ //Usando os parâmetros passados via Props
 
     //Principal render
     return (
-        <Dialog header="Clientes" visible={visible} onHide={() => {setVisible(false)}} style={{ width: '50vw' }}>
+        <Dialog header="Clientes" visible={visible} onHide={() => {setVisible(false)}} style={{width: window.innerWidth < 640 ? '' : '50vw'}}>
                
-{/* 
-                <div className="flex align-items-left">
-                    <RadioButton inputId="ingredient1" name="fisica" value="Fisica" />
-                    <label htmlFor="ingredient1" className="ml-2">Juridica</label>
-                </div>
-
-                <div className="flex align-items-left">
-                    <RadioButton inputId="ingredient1" name="juridica" value="Juridica" />
-                    <label htmlFor="ingredient2" className="ml-2">Fisica</label>
-                </div> */}
-
                {renderFields()}
 
                {renderButtons()}
+
         </Dialog>
-
-        
-
     );
 }
 export default ModalClientSave;
