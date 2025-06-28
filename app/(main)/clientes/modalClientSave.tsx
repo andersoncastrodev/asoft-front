@@ -46,41 +46,64 @@ const ModalClientSave = ({ //Usando os parâmetros passados via Props
 
     const renderFields = () => {
         return (
-            <div className='grid flex flex-column gap-2 w-full h-full'>
-                <div className='col-12 md:col-12 sm:col-6 flex flex-row gap-3'>
-                    <Dropdown value={selectedPerson} onChange={(e: DropdownChangeEvent) => setSelectedPerson(e.value)} options={persons} optionLabel="name"
-                        placeholder="Pessoa" style={{width: '50%'}} />
-                    <InputText placeholder="Nome" style={{width: '50%'}} />
+            <div>        
+                <div className="grid w-full">
+                    <div className="col-12 md:col-8">
+                        <InputText placeholder="Nome" className="w-full" />
+                    </div>
+                    <div className="col-12 md:col-4">
+                        <Dropdown value={selectedPerson} onChange={(e: DropdownChangeEvent) => setSelectedPerson(e.value)} options={persons} optionLabel="name"
+                        placeholder="Pessoa" className="w-full"/>
+                    </div>
                 </div>
-                <div className='md:col-12 sm:col-6'>
-                    <InputText placeholder="Telefone Principal" style={{width: '100%'}} />
+
+                <div className="grid w-full">
+                    <div className="col-12 md:col-6">
+                        <InputText placeholder="Cpf" className="w-full" />
+                    </div>
+                    <div className="col-12 md:col-6">
+                        <InputText placeholder="Rg" className="w-full" />
+                    </div>
                 </div>
-                <div className='md:col-12 sm:col-6'>
-                    <InputText placeholder="Telefone Secundario"  style={{width: '100%'}}   />
+
+                <div className="grid w-full">
+                    <div className="col-12 md:col-6">
+                        <InputText placeholder="Telefone Principal" className="w-full" />
+                    </div>
+                    <div className="col-12 md:col-6">
+                        <InputText placeholder="Telefone Secundario" className="w-full" />
+                    </div>
                 </div>
-                <div className='md:col-12 sm:col-6'>
-                    <InputText placeholder="Email"   style={{width: '100%'}} />
+
+                <div className="grid w-full">
+                    <div className="col-12 md:col-12 sd:col-6">
+                        <InputText placeholder="Email" className="w-full" />
+                    </div>
                 </div>
-                <div className='md:col-12 sm:col-6'>
-                    <Dropdown  
-                        options={status}
-                        placeholder="Status" 
-                        onChange={(e) => setStatusSelected(e.value)}
-                        value={statusSelected}
-                        style={{width: '100%'}}
-                        
-                    />
+
+                <div className="grid w-full">
+                    <div className="col-12 md:col-6">
+                        <Dropdown
+                            options={sex}
+                            placeholder="Genero"
+                            onChange={(e) => setSexSelected(e.value)}
+                            value={sexSelected}
+                            style={{ width: '100%' }}
+                            className="w-full"
+                        />
+                    </div>
+
+                     <div className="col-12 md:col-6">
+                        <Dropdown
+                            options={status}
+                            placeholder="Status"
+                            onChange={(e) => setStatusSelected(e.value)}
+                            value={statusSelected}
+                            className="w-full"
+                        />
+                    </div>
                 </div>
-                <div className='md:col-12 sm:col-6'>
-                    <Dropdown  
-                        options={sex}
-                        placeholder="Genero" 
-                        onChange={(e) => setSexSelected(e.value)}
-                        value={sexSelected}
-                        style={{width: '100%'}}
-                    />
-                </div>
-                
+      
             </div>
         );
     };
