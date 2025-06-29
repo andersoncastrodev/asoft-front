@@ -1,6 +1,6 @@
 import axios from "axios";
-import api from "../../../../lib/api";
-import { StatusValues } from "../../interface/enum-inteface/enum-interface";
+import api from "../../../lib/api";
+import { StatusValues } from "../interface/enum-interface";
 
 // Pegar o URL da API geral
 const URL_API = `${api.defaults.baseURL}`;
@@ -13,8 +13,7 @@ const URL_API = `${api.defaults.baseURL}`;
 export const searchEnumStatus = async () : Promise< StatusValues[] > => {
 
     try {
-      console.log(api+'/enum-values/status');  
-      const response = await axios.get(`${URL_API}/enum-values/status`, {
+      const response = await axios.get(`${URL_API}/enum/status`, {
 
       withCredentials: true, // Importante para envio de cookies
     });
@@ -28,18 +27,18 @@ export const searchEnumStatus = async () : Promise< StatusValues[] > => {
 
 }
 
-export const searchEnumSex = async () : Promise< StatusValues[]> => {
+export const searchEnumGender = async () : Promise< StatusValues[]> => {
 
   try {
 
-    const response = await axios.get(`${URL_API}/enum-values/sex`, {
+    const response = await axios.get(`${URL_API}/enum/gender`, {
       withCredentials: true, // Importante para envio de cookies
     });
 
     return response.data;
 
   }catch(err) {
-    console.error("Erro ao buscar enums de sexo:", err);
+    console.error("Erro ao buscar enums de genero:", err);
     return [];
   }
 
