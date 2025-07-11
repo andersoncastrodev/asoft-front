@@ -29,8 +29,8 @@ const Client = () => {
 
                 <Button label="Novo" icon="pi pi-plus" className="p-button-success" onClick={() => setVisibleModalClient(true)} />
 
-                <Button label="Deletar" icon="pi pi-trash" className="p-button-danger" />
-                
+                {/* <Button label="Deletar" icon="pi pi-trash" className="p-button-danger" />
+                 */}
             </div>
         );
     };
